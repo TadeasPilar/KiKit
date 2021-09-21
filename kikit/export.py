@@ -19,13 +19,14 @@ fullGerberPlotPlan = [
 ]
 
 exportSettingsJlcpcb = {
-    "UseGerberProtelExtensions": False,
-    "UseAuxOrigin": True,
+    "UseGerberProtelExtensions": True,
+    "UseAuxOrigin": False,
     "ExcludeEdgeLayer": True,
     "MinimalHeader": False,
     "NoSuffix": False,
     "MergeNPTH": True,
     "ZerosFormat": GENDRILL_WRITER_BASE.DECIMAL_FORMAT,
+    "SubstractMaskFromSilk": True,
 }
 
 exportSettingsPcbway = {
@@ -36,6 +37,7 @@ exportSettingsPcbway = {
     "NoSuffix": True,
     "MergeNPTH": False,
     "ZerosFormat": GENDRILL_WRITER_BASE.SUPPRESS_LEADING,
+    "SubstractMaskFromSilk": False,
 }
 
 
@@ -80,7 +82,7 @@ def gerberImpl(boardfile, outputdir, plot_plan=fullGerberPlotPlan, drilling=True
     popt.SetUseGerberX2format(False)
 
     # This by gerbers only
-    popt.SetSubtractMaskFromSilk(False)
+    popt.SetSubtractMaskFromSilk(settings["SubstractMaskFromSilk"])
     popt.SetDrillMarksType(PCB_PLOT_PARAMS.NO_DRILL_SHAPE)
     popt.SetSkipPlotNPTH_Pads(False)
 
